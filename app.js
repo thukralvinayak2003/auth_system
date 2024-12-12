@@ -6,6 +6,7 @@ const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const hpp = require("hpp");
+const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const authRouter = require("./routes/authRouter");
 
@@ -29,6 +30,8 @@ app.use("/api", limiter);
 app.use(mongoSanitize());
 
 app.use(xss());
+
+app.use(cookieParser());
 
 app.use(
   hpp({
